@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#calculator-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#memorized {
+
+}
+
+#calculator {
+  height: 55vmin;
+  width: 40vmin;
+  display: grid;
+  grid-template-rows: 4fr repeat(4, 2fr);
+}
+
+#calculator #input {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+#calculator .buttons-row {
+  display: grid;
+  grid-template-columns: repeat(5, 2fr);
+}
+
+#calculator .buttons-row:last-child {
+  grid-template-columns: repeat(3, 2fr) 4fr;
+}
+
+#calculator .button {
+  align-self: center;
+  justify-self: center;
+}
