@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: #8D99AE;
 }
 
 header {
@@ -21,27 +27,60 @@ header {
 }
 
 #calculator {
-  height: 55vmin;
-  width: 40vmin;
+  height: 50vmin;
+  width: 35vmin;
   display: grid;
-  grid-template-rows: 4fr repeat(4, 2fr);
+  grid-template-rows: 4fr repeat(4, 1.4fr);
+  background-color: #0b132b;
+  border-radius: 3vmin;
+  padding-bottom: 1.2vmin
 }
 
-#calculator #input {
+#calculator #inputs {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  background-color: #ffeecf;
+  border-radius: 3vmin;
+  margin: 2.4vmin 1.4vmin 2.4vmin 1.4vmin;
+  padding: 0 0.5vmin;
+  font-family: 'Roboto', sans-serif;
+}
+
+#calculator #inputs #whole-expression {
+  align-self: center;
+  justify-self: end;
+  font-size: 1.2rem;
+}
+
+#calculator #inputs #current-input {
+  align-self: center;
+  justify-self: end;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 #calculator .buttons-row {
   display: grid;
   grid-template-columns: repeat(5, 2fr);
-}
-
-#calculator .buttons-row:last-child {
-  grid-template-columns: repeat(3, 2fr) 4fr;
+  margin: 0 1.4vmin 1.2vmin 1.4vmin;
+  grid-column-gap: 1.2vmin;
 }
 
 #calculator .button {
-  align-self: center;
-  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1vmin;
+  background-color: #ffeecf;
+  color: #56494c;
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+#calculator .action {
+  background-color: #ef8354;
+}
+
+#calculator .result {
+  grid-area: 1 / 4 / 2 / -1;
 }
