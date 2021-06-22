@@ -27,8 +27,8 @@ header {
 }
 
 #calculator {
-  height: 50vmin;
-  width: 35vmin;
+  min-height: 50vmin;
+  min-width: 35vmin;
   display: grid;
   grid-template-rows: 4fr repeat(4, 1.4fr);
   background-color: #0b132b;
