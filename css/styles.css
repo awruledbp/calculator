@@ -49,21 +49,21 @@ header {
 #calculator #inputs #whole-expression {
   align-self: center;
   justify-self: end;
-  font-size: 1.2rem;
+  font-size: 1.2em;
 }
 
 #calculator #inputs #current-input {
   align-self: center;
   justify-self: end;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
 #calculator .buttons-row {
   display: grid;
   grid-template-columns: repeat(5, 2fr);
-  margin: 0 1.4vmin 1.2vmin 1.4vmin;
   grid-column-gap: 1.2vmin;
+  margin: 0 1.4vmin 1.2vmin 1.4vmin;
 }
 
 #calculator .button {
