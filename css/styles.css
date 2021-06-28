@@ -84,3 +84,15 @@ header {
 #calculator .result {
   grid-area: 1 / 4 / 2 / -1;
 }
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin: 1vmin 0;
+}
+
+footer a {
+  color: #56494c;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: underline;
+}
