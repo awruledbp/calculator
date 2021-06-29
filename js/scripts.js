@@ -5,6 +5,7 @@ const digits = document.querySelectorAll('[class="button"]');
 const floating = document.querySelector('.coma.button');
 const negative = document.querySelector('.negative.button');
 const mathOperations = document.querySelectorAll('.action.button.math');
+const actions = document.querySelectorAll('.action.button.tools');
 
 const ADDITION = '+';
 const SUBTRACTION = '-';
@@ -41,6 +42,12 @@ floating.addEventListener('click', _ => {
 negative.addEventListener('click', _ => {
   addMinus();
 });
+
+actions.forEach(button => {
+  button.addEventListener('click', _ => {
+    performAction(button.innerText);
+  })
+})
 
 function addDigit(digit) {
   if (isCalculationFinished) {
@@ -129,6 +136,43 @@ function calculate() {
   }
 }
 
+function performAction(action) {
+  switch (action) {
+    case RESULT:
+      if (isCalculationFinished) {
+        break;
+      }
+      if (!currentOperator) {
+        break;
+      }
+      if (!currentInput.innerText) {
+        break;
+      }
+      if (isDivByZero()) {
+        break;
+      }
+      updateWholeExpression(action);
+      currentInput.innerText = formatResult(calculate());
+      clearCurrent();
+      isCalculationFinished = true;
+      break;
+    case DELETE:
+      currentInput.innerText = deleteLastCharacter(currentInput.innerText);
+      break;
+    case ALLCLEAR:
+      clearCurrent();
+      resetUI();
+      break;
+  }
+}
+
+function formatResult(num) {
+  return Math.round((num * 10000) + Number.EPSILON) / 10000;
+}
+
+function deleteLastCharacter(string) {
+  return string.slice(0, -1);
+}
 
 function isDivByZero() {
   if (currentInput.innerText == '0' &&
@@ -139,3 +183,12 @@ function isDivByZero() {
   }
 }
 
+function clearCurrent() {
+  currentOperator = '';
+  currentValue = 0;
+}
+
+function resetUI() {
+  wholeExpression.innerText = '';
+  currentInput.innerText = '';
+}
