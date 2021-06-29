@@ -49,6 +49,29 @@ actions.forEach(button => {
   })
 })
 
+document.body.addEventListener('keydown', event => {
+  if (event.key >= 0 && event.key <= 9) {
+    addDigit(event.key);
+  } else if (event.key == '.') {
+    addPoint();
+  } else if (event.key == '=') {
+    performAction(RESULT);
+  } else if (event.key == 'Backspace') {
+    performAction(DELETE);
+  } else if (
+      event.key == ADDITION ||
+      event.key == KEYBOARD_DIVISION ||
+      event.key == MULTIPLICATION ||
+      event.key == SUBTRACTION
+    ) {
+    if (event.key == KEYBOARD_DIVISION) {
+      performMathOperation(DIVISION)
+    } else {
+      performMathOperation(event.key);
+    }
+  }
+})
+
 function addDigit(digit) {
   if (isCalculationFinished) {
     wholeExpression.innerText = '';
