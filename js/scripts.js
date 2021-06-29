@@ -1,8 +1,10 @@
 const currentInput = document.getElementById('current-input');
 const wholeExpression = document.getElementById('whole-expression');
+
 const digits = document.querySelectorAll('[class="button"]');
 const floating = document.querySelector('.coma.button');
 const negative = document.querySelector('.negative.button');
+const mathOperations = document.querySelectorAll('.action.button.math');
 
 const ADDITION = '+';
 const SUBTRACTION = '-';
@@ -17,6 +19,7 @@ const WHOLE_EXP_MAX_LENGTH = 28;
 
 let currentOperator = '';
 let currentValue = 0;
+
 let isCalculationFinished = false;
 
 digits.forEach(button => {
@@ -25,6 +28,11 @@ digits.forEach(button => {
   })
 });
 
+mathOperations.forEach(button => {
+  button.addEventListener('click', _ => {
+    performMathOperation(button.innerText);
+  })
+});
 
 floating.addEventListener('click', _ => {
   addPoint();
@@ -63,6 +71,16 @@ function addMinus() {
   }
 }
 
+function performMathOperation(operation) {
+  if (isCalculationFinished) {
+    wholeExpression.innerText = '';
+    isCalculationFinished = false;
+  }
+  if (isDivByZero()) {
+    return;
+  }
+  delegateCalculation(operation);
+}
 
 function updateWholeExpression(symbol) {
   let tmpStr =
@@ -76,6 +94,20 @@ function updateWholeExpression(symbol) {
   } else {
     wholeExpression.innerText = tmpStr;
   }
+}
+
+function delegateCalculation(operation) {
+  if (!currentInput.innerText) {
+    return;
+  }
+  if (!currentOperator) {
+    currentValue = Number.parseFloat(currentInput.innerText);
+  } else {
+    currentValue = calculate();
+  }
+  currentOperator = operation;
+  updateWholeExpression(operation);
+  currentInput.innerText = '';
 }
 
 function calculate() {
@@ -94,6 +126,16 @@ function calculate() {
       return first / second;
     default:
       return 0;
+  }
+}
+
+
+function isDivByZero() {
+  if (currentInput.innerText == '0' &&
+    currentOperator == DIVISION) {
+    return true;
+  } else {
+    return false;
   }
 }
 
