@@ -64,6 +64,20 @@ function addMinus() {
 }
 
 
+function updateWholeExpression(symbol) {
+  let tmpStr =
+    `${wholeExpression.innerText} ${currentInput.innerText} ${symbol}`;
+  if (tmpStr.length > WHOLE_EXP_MAX_LENGTH) {
+    let regex = "[-+*÷]";
+    tmpStr = tmpStr.slice(-WHOLE_EXP_MAX_LENGTH);
+    let firstOccurance = tmpStr.match(regex).index;
+    tmpStr = `... ${tmpStr.substring(firstOccurance, tmpStr.length)}`;
+    wholeExpression.innerText = tmpStr;
+  } else {
+    wholeExpression.innerText = tmpStr;
+  }
+}
+
 function calculate() {
   let operator = currentOperator;
   let first = currentValue;
